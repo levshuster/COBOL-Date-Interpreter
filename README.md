@@ -21,7 +21,9 @@ optional arguments:
                         Location of a new line delimited file of dates to convert
   -d DESTINATION, --destination DESTINATION
                         Destination for converted dates
-  -n, --numbers         Results will be in digits instead of words EX: 6/31 instead of June 31```
+  -n, --numbers         Results will be in digits instead of words EX: 6/31 instead of June 31
+  
+```
   
 # Instaltion and Usage
 
