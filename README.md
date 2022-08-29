@@ -28,7 +28,7 @@ optional arguments:
 # Instaltion and Usage
 
 ```
-➜  Learning git clone https://github.com/levshuster/COBOL-Date-Interpreter.git
+➜  git clone https://github.com/levshuster/COBOL-Date-Interpreter.git
 Cloning into 'COBOL-Date-Interpreter'...
 remote: Enumerating objects: 21, done.
 remote: Counting objects: 100% (21/21), done.
@@ -36,7 +36,7 @@ remote: Compressing objects: 100% (16/16), done.
 remote: Total 21 (delta 9), reused 11 (delta 5), pack-reused 0
 Receiving objects: 100% (21/21), 16.65 KiB | 487.00 KiB/s, done.
 Resolving deltas: 100% (9/9), done.
-➜  Learning cd COBOL-Date-Interpreter 
+➜  cd COBOL-Date-Interpreter 
 ➜  COBOL-Date-Interpreter git:(main) ls
 COBOLDateInterp.py LICENSE            README.md          convert.py
 
