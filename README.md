@@ -4,7 +4,7 @@ Given a text file of cobol dates delimited by new lines, return a human readable
 # Warning
 This function throws out year infomation.
 # CLI help
-python3 COBOLDateInterp.py -h
+```python3 COBOLDateInterp.py -h
 usage: COBOLDateInterp.py [-h] [-S DATEASSTRING] [-s SOURCE] [-d DESTINATION] [-n]
 
 Convert a COBOL date to a human readable date
@@ -17,5 +17,5 @@ optional arguments:
                         Location of a new line delimited file of dates to convert
   -d DESTINATION, --destination DESTINATION
                         Destination for converted dates
-  -n, --numbers         Results will be in digits instead of words EX: 6/31 instead of June 31
+  -n, --numbers         Results will be in digits instead of words EX: 6/31 instead of June 31```
   
