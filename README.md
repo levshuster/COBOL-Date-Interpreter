@@ -27,7 +27,8 @@ optional arguments:
   
 # Instaltion and Usage
 
-```Learning git clone https://github.com/levshuster/COBOL-Date-Interpreter.git
+```
+➜  Learning git clone https://github.com/levshuster/COBOL-Date-Interpreter.git
 Cloning into 'COBOL-Date-Interpreter'...
 remote: Enumerating objects: 21, done.
 remote: Counting objects: 100% (21/21), done.
