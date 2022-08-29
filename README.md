@@ -36,8 +36,12 @@ Resolving deltas: 100% (9/9), done.
 ➜  Learning cd COBOL-Date-Interpreter 
 ➜  COBOL-Date-Interpreter git:(main) ls
 COBOLDateInterp.py LICENSE            README.md          convert.py
+
+
 ➜  COBOL-Date-Interpreter git:(main) python3 COBOLDateInterp.py -S C20531                              
 June 31
+
+
 ➜  COBOL-Date-Interpreter git:(main) cat >> source.txt
 C10712
 C10720
@@ -95,6 +99,8 @@ C10830
 C10712
 C10712
 ^C
+
+
 ➜  COBOL-Date-Interpreter git:(main) ✗ python3 COBOLDateInterp.py -s source.txt
 August 12
 August 20
@@ -151,9 +157,8 @@ September 30
 September 30
 August 12
 August 12
-➜  COBOL-Date-Interpreter git:(main) ✗ python3 COBOLDateInterp.py -s source.txt -d
-usage: COBOLDateInterp.py [-h] [-S DATEASSTRING] [-s SOURCE] [-d DESTINATION] [-n]
-COBOLDateInterp.py: error: argument -d/--destination: expected one argument
+
+
 ➜  COBOL-Date-Interpreter git:(main) ✗ python3 COBOLDateInterp.py -s source.txt -n
 7-12
 7-20
@@ -210,7 +215,11 @@ COBOLDateInterp.py: error: argument -d/--destination: expected one argument
 8-30
 7-12
 7-12
+
+
 ➜  COBOL-Date-Interpreter git:(main) ✗ python3 COBOLDateInterp.py -s source.txt -n -d destination.txt
+
+
 ➜  COBOL-Date-Interpreter git:(main) ✗ cat destination.txt 
 7-12
 7-20
