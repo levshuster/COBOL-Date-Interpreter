@@ -10,7 +10,6 @@ def convert_date(date, numbers):
     month_string = months[month_number]
     # convert hex to int
     decade_number = 190+int(decade_hex, 16)
-    print(decade_number)
     
     if numbers: return f'{month_number}{deliminator}{day_number}-{decade_number}{year_number}'
     else: return f'{month_string} {day_number} {decade_number}{year_number}'
