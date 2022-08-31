@@ -7,8 +7,7 @@ parser = argparse.ArgumentParser(description='Convert a COBOL date to a human re
 parser.add_argument('-S', '--dateAsString', type=str, help='The date to convert, EX: C20531')
 parser.add_argument('-s', '--source', type=str, help='Location of a new line delimited file of dates to convert')
 parser.add_argument('-d', '--destination', type=str, help='Destination for converted dates')
-parser.add_argument('-n', '--numbers', action='store_true', help='Results will be in digits instead of words EX: 6/31 instead of June 31')
-
+parser.add_argument('-n', '--numbers', action='store_true', help='Results will be in digits instead of words EX: 6/31/2022 instead of June 31 2022')
 
 args = parser.parse_args()
 result = []
