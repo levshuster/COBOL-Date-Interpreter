@@ -11,9 +11,13 @@ st.set_page_config(page_title=title, page_icon=icon)
 st.title(f'{icon} {title}')
 
 
+# INPUT
+text_input = st.text_area("Enter a COBOL date", placeholder='EX C20531')
+uploaded_file = st.file_uploader("Or upload a excel/csv file", type=["csv", "xlsx"])
+
+
 # PASTE OPTION
 
-input = st.text_area("Enter a COBOL date", placeholder='EX C20531')
 left, right = st.columns(2)
 format = True if right.radio("Select a date format", ("MM-DD-YY", "Month DD YYYY")) == "MM-DD-YY" else False
 result = ''
@@ -21,11 +25,10 @@ def list_to_multiline_string(list):
     if not list[0]: return
     global result 
     result = list
-left.button("Convert", on_click=list_to_multiline_string(bulk_convert_date(input, format)))
+left.button("Convert", on_click=list_to_multiline_string(bulk_convert_date(text_input, format)))
 
 # UPLOAD OPTION
 
-uploaded_file = st.file_uploader("Or upload a excel/csv file", type=["csv", "xlsx"])
 # if uploaded_file: uploaded_file.getvalue()
 # if uploaded_file: T1 = pd.read_excel(uploaded_file).to_numpy().tolist() if uploaded_file.name.endswith('xlsx') else pd.read_csv(uploaded_file).to_numpy().tolist()
 # T2 = []
