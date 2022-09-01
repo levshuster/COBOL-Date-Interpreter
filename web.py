@@ -29,13 +29,11 @@ left.button("Convert", on_click=list_to_multiline_string(bulk_convert_date(text_
 
 # UPLOAD OPTION
 
-# if uploaded_file: uploaded_file.getvalue()
-# if uploaded_file: T1 = pd.read_excel(uploaded_file).to_numpy().tolist() if uploaded_file.name.endswith('xlsx') else pd.read_csv(uploaded_file).to_numpy().tolist()
-# T2 = []
-# for row in T1:
-#     T2.append([convert_date(date, format) for date in row])
-# df = pd.DataFrame(T2)
-# st.write(df)
+from pandas import ExcelFile
+if uploaded_file: 
+    if uploaded_file.name.endswith('.csv'): df = pd.read_csv(uploaded_file)
+    else: df = ExcelFile(uploaded_file.read()).parse()
+    st.write(df)
 
 
 # RESULT
