@@ -1,39 +1,68 @@
 import streamlit as st
 import pandas as pd
 
-from convert import bulk_convert_date, convert_date
+
+from convert import bulk_convert_date_new_line_deliminated, convert_date
+from helpers import get_list_of_row_letters, get_row_letter
 
 # SETUP
 
 icon = '📅'
+result = ''
 title = "COBOL Date Converter"
 st.set_page_config(page_title=title, page_icon=icon)
 st.title(f'{icon} {title}')
 
 
 # INPUT
+
+file_selected = False
 text_input = st.text_area("Enter a COBOL date", placeholder='EX C20531')
-uploaded_file = st.file_uploader("Or upload a excel/csv file", type=["csv", "xlsx"])
-
-
-# PASTE OPTION
-
-left, right = st.columns(2)
-format = True if right.radio("Select a date format", ("MM-DD-YY", "Month DD YYYY")) == "MM-DD-YY" else False
-result = ''
-def list_to_multiline_string(list):
-    if not list[0]: return
-    global result 
-    result = list
-left.button("Convert", on_click=list_to_multiline_string(bulk_convert_date(text_input, format)))
+uploaded_file = st.file_uploader("Or upload a file", type=["csv", "xlsx"])
 
 # UPLOAD OPTION
 
-from pandas import ExcelFile
-if uploaded_file: 
+if uploaded_file and not text_input:
+    st.write("""
+    
+    ---
+    
+    ## Select a Row or Column to Convert""")
+    headers, page = st.columns(2)
+
     if uploaded_file.name.endswith('.csv'): df = pd.read_csv(uploaded_file)
-    else: df = ExcelFile(uploaded_file.read()).parse()
+    else: 
+        df = pd.ExcelFile(uploaded_file.read()).parse()#.fillna('')
+        # todo add support for multiple sheets
+    useExcelHeader = headers.checkbox('Use Excel Headers', value=False)
+    if useExcelHeader: df.columns = get_list_of_row_letters(df.shape[1])
     st.write(df)
+    
+    x, y = st.columns(2)
+    xSelection = x.selectbox("Column", df.keys())
+    ySelection:int = y.selectbox("Row", range(df.shape[0]))
+    selectionAxes = "Row" if x.radio("Select a portion of a ", ("Column", "Row")) == "Column" else "Column"
+    thirdVar = y.selectbox(f"Ending {selectionAxes}", df.keys() if selectionAxes == "Column" else range(df.shape[0]), key = selectionAxes)
+    
+    if selectionAxes == "Row": result = df[xSelection].tolist()[ySelection : thirdVar+1]
+    else: result = df[[xSelection, thirdVar] if xSelection != thirdVar else xSelection].tolist()[ySelection]
+    if type(result) is not list: result = [result]
+
+
+# CONVERT
+
+st.write("""---""")
+left, right = st.columns(2)
+format = True if right.radio("Select a date format", ("MM-DD-YY", "Month DD YYYY")) == "MM-DD-YY" else False
+
+def list_to_multiline_string(list):
+    if type(list) == list and not list[0]: return
+    global result
+    result = list
+
+if uploaded_file and text_input: st.write("### Error: Please enter EITHER a date or upload a file")
+elif uploaded_file: left.button("Convert", on_click=list_to_multiline_string(convert_date(cell, format) for cell in result))
+else: left.button("Convert", on_click=list_to_multiline_string(bulk_convert_date_new_line_deliminated(text_input, format)))
 
 
 # RESULT
